@@ -3,8 +3,21 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-os.makedirs("output", exist_ok=True)
 import glob
+import platform
+import subprocess
+
+os.makedirs("output", exist_ok=True)
+
+
+if platform.system() == "Linux":
+    so_path = "src/c_bridge/thermal_core.so"
+    if not os.path.exists(so_path):
+        print("Compiling C kernel for Linux cloud environment...")
+        subprocess.run([
+            "gcc", "-O3", "-shared", "-fPIC", "-o", so_path, 
+            "src/c_bridge/thermal_core.c"
+        ], check=True)
 
 from src.interpreter.interpreter import Interpreter
 from src.parser.parser import parse_dsl_string
