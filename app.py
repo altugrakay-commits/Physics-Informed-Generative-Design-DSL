@@ -3,6 +3,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+os.makedirs("output", exist_ok=True)
 import glob
 
 from src.interpreter.interpreter import Interpreter
