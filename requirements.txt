@@ -1,0 +1,8 @@
+textX==4.0.1
+numpy==2.2.1
+cadquery==2.5.2
+pyvista==0.44.1
+vtk<9.4.0
+pytest==8.3.4
+streamlit
+matplotlib

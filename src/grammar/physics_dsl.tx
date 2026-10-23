@@ -1,0 +1,55 @@
+// Grammar for the Physics-Informed Generative Design DSL.
+// Declarative syntax for mechanical parts and 2D material interfaces.
+
+Model:
+    (parts+=Part | interfaces+=Interface)*
+;
+
+Part:
+    'part' name=STRING '{'
+        ('geometry' ':' geometry=Geometry)?
+        ('material' ':' material=ID)?
+        ('constraint' 'stress' '{' constraint=StressConstraint '}')?
+    '}'
+;
+
+StressConstraint:
+    'max_von_mises' '<' max_stress=FLOAT unit=STRESS_UNIT
+;
+
+Geometry:
+    Box | Cylinder
+;
+
+Box:
+    'box' '(' width=FLOAT ',' height=FLOAT ',' depth=FLOAT ')'
+;
+
+Cylinder:
+    'cylinder' '(' radius=FLOAT ',' height=FLOAT ')'
+;
+
+Interface:
+    'interface' name=STRING '{'
+        'layers' ':' '[' layers+=Layer (',' layers+=Layer)* ']'
+        ('physics' ':' physics=Physics)?
+        ('thermal' ':' thermal=Thermal)?
+    '}'
+;
+
+Layer:
+    material=ID '(' thickness=FLOAT unit=LENGTH_UNIT ')'
+;
+
+Physics:
+    'coupled_poisson_schrodinger'
+;
+
+Thermal:
+    'transient_heat_flux' '(' flux=FLOAT unit=HEAT_FLUX_UNIT ')'
+;
+
+// Basic terminal definitions (textX has built-ins like ID and FLOAT).
+STRESS_UNIT: 'MPa' | 'GPa' | 'Pa';
+LENGTH_UNIT: 'mm' | 'um' | 'nm' | 'm';
+HEAT_FLUX_UNIT: 'W/cm2' | 'W/m2';
