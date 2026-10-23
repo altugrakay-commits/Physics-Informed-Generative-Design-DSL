@@ -6,8 +6,9 @@ A custom Domain-Specific Language (DSL) that compiles human-readable physics con
 This project bridges the gap between declarative text descriptions of engineering components and executable physics simulations. By writing simple text definitions for material stacks and geometries, the engine automatically generates 3D models (STEP/STL) and runs a C-accelerated finite-difference thermal solver to create a "digital twin."
 
 ### 📸 Visual Output
-*Click the image to view a larger version.*
+
 ![PyVista Thermal Simulation](Images/Heatmap_Final.png)
+**Figure 1:** Thermal Simulation Heatmap
 
 ## 🏗️ Architecture
 The engine is built in four distinct layers:
