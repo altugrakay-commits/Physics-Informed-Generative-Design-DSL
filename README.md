@@ -17,7 +17,7 @@ The engine is built in four distinct layers:
 3. **The CAD Engine (CadQuery):** Generates precise 3D solids (`.step` and `.stl`) from parsed parameters.
 4. **The Physics Engine (C + ctypes):** Executes a 2D transient thermal diffusion kernel written in C for near-native performance, bridged to Python via `ctypes`.
 
-*(For a deep dive into the numerical methods and C-bridge implementation, read the **[Technical Brief](Technical%20Brief.md)**).*
+*(For a deep dive into the numerical methods and C-bridge implementation, read the **[Technical Brief](Technical_Brief.md)**).*
 
 ## 🚀 Features
 * **Declarative Syntax:** Define parts, materials, and interfaces in simple text.
